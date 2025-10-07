@@ -1,0 +1,31 @@
+import numpy as np
+from scipy import stats
+
+
+data = np.loadtxt("SOCR-HeightWeight.csv", delimiter=",", dtype=str)
+
+heights_str = data[1:25001, 1]  
+weights_str = data[1:25001, 2]
+
+heights = heights_str.astype(float)
+weights = weights_str.astype(float)
+
+median_height = np.median(heights)
+mode_height = stats.mode(heights, keepdims=False).mode
+std_dev_height = np.std(heights)
+
+median_weight = np.median(weights)
+mode_weight = stats.mode(weights, keepdims=False).mode
+std_dev_weight = np.std(weights)
+
+print("Heights:")
+print("Median:", median_height)
+print("Mode:", mode_height)
+print("Standard Deviation:", std_dev_height)
+
+print("\nWeights:")
+print("Median:", median_weight)
+print("Mode:", mode_weight)
+print("Standard Deviation:", std_dev_weight)
+
+
